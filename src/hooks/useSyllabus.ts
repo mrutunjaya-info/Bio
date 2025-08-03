@@ -90,7 +90,7 @@ export const useSyllabus = () => {
             subject.code === subjectCode 
               ? { 
                   ...subject, 
-                  units: subject.units.filter((_, index) => index !== unitIndex)
+                  units: (subject.units || []).filter((_, index) => index !== unitIndex)
                 }
               : subject
           )
