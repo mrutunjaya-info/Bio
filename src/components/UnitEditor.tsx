@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import { Save, X, Plus, Trash2 } from 'lucide-react';
 import { Unit } from '../types/syllabus';
 
+interface Unit {
+  title: string;
+  content: string[];
+}
+
 interface UnitEditorProps {
   unit?: Unit;
   unitIndex?: number;

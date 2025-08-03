@@ -104,12 +104,12 @@ const DistractionFreeReader: React.FC<DistractionFreeReaderProps> = ({
               <List className={`w-6 h-6 ${isDarkMode ? 'text-white' : 'text-gray-600'}`} />
             </button>
             <button
-          onClick={onClose}
-          className={`fixed top-2 right-2 p-2 ${isDarkMode ? 'bg-black hover:bg-black text-white border border-white' : 'bg-gray-100 hover:bg-gray-200 text-gray-600'} rounded-full transition-colors z-10`}
-          aria-label="Close reader"
-        >
-          <X className={`w-6 h-6 ${isDarkMode ? 'text-white' : 'text-gray-600'}`} />
-        </button>
+              onClick={onClose}
+              className={`p-2 ${isDarkMode ? 'bg-black hover:bg-black text-white border border-white' : 'bg-gray-100 hover:bg-gray-200 text-gray-600'} rounded-full transition-colors`}
+              aria-label="Close reader"
+            >
+              <X className={`w-6 h-6 ${isDarkMode ? 'text-white' : 'text-gray-600'}`} />
+            </button>
           </div>
 
         <div className="prose prose-lg max-w-none">
@@ -131,7 +131,7 @@ const DistractionFreeReader: React.FC<DistractionFreeReaderProps> = ({
             </div>
           )}
 
-          {subject.units.length > 0 && (
+          {subject.units && subject.units.length > 0 && (
             <div className="mb-4">
               <div className="flex items-center justify-between mb-4">
                 <h2 className={`text-2xl font-semibold ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>Course Content</h2>
@@ -176,7 +176,7 @@ const DistractionFreeReader: React.FC<DistractionFreeReaderProps> = ({
                       </div>
                     </div>
                     <ul className="space-y-2">
-                      {unit.content.map((item, itemIndex) => (
+                      {unit.content && unit.content.map((item, itemIndex) => (
                         <li key={itemIndex} className={`${isDarkMode ? 'text-white' : 'text-gray-700'} leading-relaxed`}>
                           • {item}
                         </li>
@@ -184,6 +184,25 @@ const DistractionFreeReader: React.FC<DistractionFreeReaderProps> = ({
                     </ul>
                   </div>
                 ))}
+              </div>
+            </div>
+          )}
+
+          {/* Show Add Unit button even if no units exist */}
+          {(!subject.units || subject.units.length === 0) && (
+            <div className="mb-4">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className={`text-2xl font-semibold ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>Course Content</h2>
+                <button
+                  onClick={handleAddUnit}
+                  className="flex items-center px-3 py-1 text-sm bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Add Unit
+                </button>
+              </div>
+              <div className={`text-center py-8 ${isDarkMode ? 'text-white' : 'text-gray-500'}`}>
+                <p>No units added yet. Click "Add Unit" to get started.</p>
               </div>
             </div>
           )}
