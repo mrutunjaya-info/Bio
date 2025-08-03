@@ -60,6 +60,9 @@ function App() {
   const handleOpenSyllabus = () => {
     if (currentSemester && currentSemester.subjects.length > 0) {
       handleReadSubject(currentSemester.subjects[0], selectedSemester);
+    } else {
+      // If no subjects, still allow opening syllabus view
+      console.log('No subjects available in current semester');
     }
   };
 
