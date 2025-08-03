@@ -507,7 +507,6 @@ export const syllabusData: Semester[] = [
         credits: "0+20",
         objective: "Conduct full-fledged research in a chosen area.",
         deliverables: ["Thesis, analysis, conclusions, viva/presentation"],
-        units: []
       }
     ]
   }
