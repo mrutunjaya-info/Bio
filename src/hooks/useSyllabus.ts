@@ -49,7 +49,7 @@ export const useSyllabus = () => {
           ...semester,
           subjects: semester.subjects.map(subject =>
             subject.code === subjectCode 
-              ? { ...subject, units: [...subject.units, unit] }
+              ? { ...subject, units: [...(subject.units || []), unit] }
               : subject
           )
         };
@@ -68,7 +68,7 @@ export const useSyllabus = () => {
             subject.code === subjectCode 
               ? { 
                   ...subject, 
-                  units: subject.units.map((u, index) => 
+                  units: (subject.units || []).map((u, index) => 
                     index === unitIndex ? unit : u
                   )
                 }
