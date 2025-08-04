@@ -1,9 +1,10 @@
 import React from 'react';
 import { useState } from 'react';
 import { X, Plus, Edit, Trash2, List } from 'lucide-react';
-import { Subject } from '../types/syllabus';
+import { Subject, Unit } from '../types/syllabus';
 import UnitEditor from './UnitEditor';
 import TableOfContents from './TableOfContents';
+
 
 interface DistractionFreeReaderProps {
   subject: Subject;
@@ -131,7 +132,7 @@ const DistractionFreeReader: React.FC<DistractionFreeReaderProps> = ({
             </div>
           )}
 
-          {subject.units && subject.units.length > 0 && (
+          {(subject.units && subject.units.length > 0) ? (
             <div className="mb-4">
               <div className="flex items-center justify-between mb-4">
                 <h2 className={`text-2xl font-semibold ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>Course Content</h2>
@@ -144,7 +145,7 @@ const DistractionFreeReader: React.FC<DistractionFreeReaderProps> = ({
                 </button>
               </div>
               <div className="space-y-4">
-                {subject.units.map((unit, index) => (
+                {(subject.units || []).map((unit, index) => (
                   <div key={index} className={`${isDarkMode ? 'bg-black border border-white' : 'bg-gray-50'} rounded-lg p-4`}>
                     <div className="flex items-center justify-between mb-3">
                       <h3 className={`text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>
@@ -176,7 +177,7 @@ const DistractionFreeReader: React.FC<DistractionFreeReaderProps> = ({
                       </div>
                     </div>
                     <ul className="space-y-2">
-                      {unit.content && unit.content.map((item, itemIndex) => (
+                      {(unit.content || []).map((item, itemIndex) => (
                         <li key={itemIndex} className={`${isDarkMode ? 'text-white' : 'text-gray-700'} leading-relaxed`}>
                           • {item}
                         </li>
@@ -186,10 +187,7 @@ const DistractionFreeReader: React.FC<DistractionFreeReaderProps> = ({
                 ))}
               </div>
             </div>
-          )}
-
-          {/* Show Add Unit button even if no units exist */}
-          {(!subject.units || subject.units.length === 0) && (
+          ) : (
             <div className="mb-4">
               <div className="flex items-center justify-between mb-4">
                 <h2 className={`text-2xl font-semibold ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>Course Content</h2>
@@ -271,7 +269,7 @@ const DistractionFreeReader: React.FC<DistractionFreeReaderProps> = ({
       </div>
 
       <TableOfContents
-        content={subject.units.map(unit => `# ${unit.title}\n${unit.content.join('\n')}`).join('\n\n')}
+        content={(subject.units || []).map(unit => `# ${unit.title}\n${(unit.content || []).join('\n')}`).join('\n\n')}
         isDarkMode={isDarkMode}
         isVisible={showTOC}
         onClose={() => setShowTOC(false)}
