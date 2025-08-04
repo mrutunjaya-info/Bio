@@ -196,7 +196,16 @@ export const syllabusData: Semester[] = [
           "Abstracts, figures, citations",
           "Grammar, phonetics, interviews, presentations"
         ],
-        units: []
+        units: [
+          {
+            title: "Writing Skills",
+            content: [
+              "Research paper structure",
+              "Abstract writing",
+              "Citation formats"
+            ]
+          }
+        ]
       }
     ]
   },
@@ -348,7 +357,16 @@ export const syllabusData: Semester[] = [
           "Patents, Copyrights, Trademarks, Plant Varieties",
           "Licensing, MTAs, collaborations"
         ],
-        units: []
+        units: [
+          {
+            title: "IPR Overview",
+            content: [
+              "TRIPS agreement",
+              "Indian IPR laws",
+              "Patent applications"
+            ]
+          }
+        ]
       },
       {
         code: "PGS 504",
@@ -360,7 +378,16 @@ export const syllabusData: Semester[] = [
           "Buffers, microscope, sterilization",
           "Tissue culture, viability tests"
         ],
-        units: []
+        units: [
+          {
+            title: "Lab Safety",
+            content: [
+              "Chemical handling procedures",
+              "Equipment usage",
+              "Safety protocols"
+            ]
+          }
+        ]
       }
     ]
   },
@@ -499,7 +526,16 @@ export const syllabusData: Semester[] = [
           "Oral presentation",
           "Peer feedback"
         ],
-        units: []
+        units: [
+          {
+            title: "Presentation Skills",
+            content: [
+              "Topic selection",
+              "Slide preparation",
+              "Oral presentation techniques"
+            ]
+          }
+        ]
       },
       {
         code: "BI 500",
@@ -507,6 +543,17 @@ export const syllabusData: Semester[] = [
         credits: "0+20",
         objective: "Conduct full-fledged research in a chosen area.",
         deliverables: ["Thesis, analysis, conclusions, viva/presentation"],
+        units: [
+          {
+            title: "Research Methodology",
+            content: [
+              "Literature review",
+              "Research design",
+              "Data collection and analysis",
+              "Thesis writing"
+            ]
+          }
+        ]
       }
     ]
   }
