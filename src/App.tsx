@@ -58,7 +58,7 @@ function App() {
   };
 
   const handleOpenSyllabus = () => {
-    if (currentSemester && currentSemester.subjects.length > 0) {
+    if (currentSemester && currentSemester.subjects && currentSemester.subjects.length > 0) {
       handleReadSubject(currentSemester.subjects[0], selectedSemester);
     } else {
       // If no subjects, still allow opening syllabus view
@@ -67,13 +67,13 @@ function App() {
   };
 
   const handleOpenNotes = () => {
-    if (currentSemester && currentSemester.subjects.length > 0) {
+    if (currentSemester && currentSemester.subjects && currentSemester.subjects.length > 0) {
       handleViewNotes(currentSemester.subjects[0].code, selectedSemester);
     }
   };
 
   const handleOpenPDFs = () => {
-    if (currentSemester && currentSemester.subjects.length > 0) {
+    if (currentSemester && currentSemester.subjects && currentSemester.subjects.length > 0) {
       handleViewPDFs(currentSemester.subjects[0].code, selectedSemester);
     }
   };
@@ -109,7 +109,7 @@ function App() {
             </div>
 
             <div className={`${isDarkMode ? 'bg-black border-white' : 'bg-white border-gray-200'} border border-t-0 divide-y ${isDarkMode ? 'divide-white' : 'divide-gray-200'}`}>
-              {currentSemester.subjects.map((subject) => (
+              {(currentSemester.subjects || []).map((subject) => (
                 <SubjectCard
                   key={subject.code}
                   subject={subject}
@@ -124,7 +124,7 @@ function App() {
               ))}
             </div>
 
-            {currentSemester.subjects.length === 0 && (
+            {(!currentSemester.subjects || currentSemester.subjects.length === 0) && (
               <div className={`text-center py-8 ${isDarkMode ? 'bg-black border-white' : 'bg-white border-gray-200'} border-t border-b mx-2`}>
                 <BookOpen className={`w-16 h-16 ${isDarkMode ? 'text-white' : 'text-gray-400'} mx-auto mb-4`} />
                 <h3 className={`text-lg font-medium ${isDarkMode ? 'text-white' : 'text-gray-900'} mb-2`}>No subjects available</h3>
